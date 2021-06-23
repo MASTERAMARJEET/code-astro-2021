@@ -13,4 +13,5 @@ STAGE 1: Simulate the trajectory of a binary system
 - We need to store the coordinates
 
 STAGE 2: Spectroscopic binary Use change in redshift to simulate the orbit.
+
 STAGE 3: Eclipsing binary orbit from light curve
