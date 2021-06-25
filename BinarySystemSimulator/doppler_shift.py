@@ -22,7 +22,7 @@ def spectrum_template(res,tol=10.0):
     spectral_line=np.sort(spectral_line)
     count=0
     wavelength_template=np.arange(4000,7000,res)
-    intensity_template=np.zeros(len(wavelength_template))
+    intensity_template=np.zeros(len(wavelength_template))*0.001
 
     n_tol=int(0.5*tol/res)
 
@@ -48,12 +48,12 @@ def spectrum_match(template,data_obs):
     """
     n_temp,n_obs=len(template),len(data_obs)
     data=np.zeros(n_obs+2*n_temp)
-    data[n_temp:-(n_temp+1)] = data_obs
+    data[n_temp-1:-(n_temp+1)] = data_obs
     
     match=np.zeros(n_obs+n_temp)
 
     for i in range(n_obs+n_temp):
-        match[i]=numpy.inner(template,data[i:i+n_temp])    
+        match[i]=np.sum(template*data[i:i+n_temp])    
 
     return match
 
@@ -88,15 +88,23 @@ def spectrum_doppler_shift(data,spec_type='absorb'):
     data_wavelength,data_intensity=data[:,0],data[:,1]
     res=data_wavelength[1]-data_wavelength[0]
     template = spectrum_template(res)
+    
+    plt.plot(template)
+    plt.plot(data_intensity)
+    plt.savefig("1.png")
+    
     match = spectrum_match(template,data_intensity)
     max_match=0
-    if (spec_type=='emit'):
-        max_match=np.where(match==np.amax(match))
-    else:
-        max_match=np.where(match==np.amin(match))
 
-    match_wavelength = max_match*res + data_wavelength[0]
-    dopp_shift = match_wavelength - 4000 #4000A corresponds to the lowest in template
+    if (spec_type=='emit'):
+        max_match=np.where(match==max(match))
+    else:
+        max_match=np.where(match==min(match))
+
+    #pick the correct index
+    wavelength_obs = data_wavelength[0] + max_match[0]*res 
+    high_template=7000 #corresponds to highest wavelength of the template
+    dopp_shift = high_template - wavelength_obs 
 
     return dopp_shift
 
@@ -106,4 +114,38 @@ def spectrum_doppler_shift(data,spec_type='absorb'):
 To test create synthetic data points!!
 """
             
-    
+def test_spectrum_doppler_shift():
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    line_H_alpha,line_H_beta,line_H_gamma,line_H_delta=6562.8,4861.3,4340.5,4101.7
+    line_G_band=4250
+    line_Na=5800
+    line_He_neutral,line_He_ion=4200,4400
+
+    spectral_line=np.array([line_H_alpha,line_H_beta,line_G_band,line_H_delta,line_H_gamma,line_He_ion,line_He_neutral,line_Na])
+    spectral_line=np.sort(spectral_line)
+    spectral_line+=500
+
+    res,tol=0.1,10.0
+    wavelength=np.arange(2000,7000,res) 
+    intensity=0.03*np.random.normal(0,10,len(wavelength))
+    count=0
+    n_tol=int(0.5*tol/res)
+    for i in range(len(wavelength)):
+            if(abs(wavelength[i]-spectral_line[count])<=res):
+                intensity[i-n_tol:i+n_tol]+=1
+                count+=1
+                if(count==8):
+                    break
+
+    intensity+=5
+
+    data=np.zeros((len(wavelength),2))
+    data[:,0],data[:,1]=wavelength,intensity
+
+    dopp_shift=spectrum_doppler_shift(data,'emit')
+    print(dopp_shift)
+
+
+test_spectrum_doppler_shift()
