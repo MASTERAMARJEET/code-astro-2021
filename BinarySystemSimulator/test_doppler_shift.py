@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from doppler_shift import spectrum_doppler_shift
 
 #end to end test
-def test_spectrum_doppler_shift():
+def test_doppler_shift():
     import numpy as np
     import matplotlib.pyplot as plt
 

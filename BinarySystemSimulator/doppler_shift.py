@@ -80,11 +80,6 @@ def spectrum_doppler_shift(data,tol,spec_type='absorb'):
         spectrum_match(template,data): Function to find the inner product of template with observed data
     """
 
-    #find the res of the input data
-    #take tolerance for the template
-    #create template
-    #call match function
-    #find the shift from the max/min match
     data_wavelength,data_intensity=data[:,0],data[:,1]
     res=data_wavelength[1]-data_wavelength[0]
     template = spectrum_template(res,tol)
