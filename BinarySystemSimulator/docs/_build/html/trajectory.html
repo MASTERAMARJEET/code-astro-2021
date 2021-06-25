@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Trajectory &mdash; SpectroBinary 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SpectroBinary
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Trajectory</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SpectroBinary</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Trajectory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/trajectory.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="trajectory">
+<span id="id1"></span><h1>Trajectory<a class="headerlink" href="#trajectory" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-trajectory"></span><dl class="py class">
+<dt id="trajectory.BinarySystem">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">trajectory.</span></code><code class="sig-name descname"><span class="pre">BinarySystem</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trajectory.BinarySystem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulates a Binary star system. Both the stars are considered as point masses.
+Only the presence of gravitational force is considered.</p>
+<dl class="simple">
+<dt>Input:</dt><dd><p>m1 (float): stellar mass 1
+m2 (float): stellar mass 2
+dt (float): timestep of the simulation (in seconds)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>numpy attributes use Cartesian coordinates. 1st value is the x-coordinate</strong> (<em>Following</em>) – </p></li>
+<li><p><strong>the 2nd value is the y-coordinate.</strong> (<em>and</em>) – </p></li>
+<li><p><strong>pos1</strong> (<em>numpy</em><em>,</em><em>float</em>) – Coordinates of mass 1</p></li>
+<li><p><strong>pos2</strong> (<em>numpy</em><em>,</em><em>float</em>) – Coordinates of mass 2</p></li>
+<li><p><strong>vel1</strong> (<em>numpy</em><em>,</em><em>float</em>) – Velocity of mass 1</p></li>
+<li><p><strong>vel2</strong> (<em>numpy</em><em>,</em><em>float</em>) – Velocity of mass 2</p></li>
+<li><p><strong>acc1</strong> (<em>numpy</em><em>,</em><em>float</em>) – Acceleration of mass 1</p></li>
+<li><p><strong>acc2</strong> (<em>numpy</em><em>,</em><em>float</em>) – Acceleration of mass 2</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="trajectory.BinarySystem.__init__">
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trajectory.BinarySystem.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function run to initialize the BinarySystem class. The initial positions are taken along the x-axis. Initial velocities taken perpendicular to the line joining the centers. Initialises the position, velocity, and acceleration of both masses. Also initializes the time step of the simulation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="trajectory.BinarySystem.force">
+<code class="sig-name descname"><span class="pre">force</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trajectory.BinarySystem.force" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the force on mass1 due to mass2, and returns the force</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="trajectory.BinarySystem.update_position">
+<code class="sig-name descname"><span class="pre">update_position</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trajectory.BinarySystem.update_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the attributes of the object after each time step</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="id0">
+<code class="sig-name descname"><span class="pre">force</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to find the gravitational force on MASS1 due to mass2.
+The force on MASS2 due to mass1 would be the negative of this value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>force on mass1 due to mass2</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>F (float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="id2">
+<code class="sig-name descname"><span class="pre">update_position</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function updates the positions of mass1 and mass2 at each time step dt.
+It calls the force() function to update the acceleration, and hence velocity as well.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Bhuvana, Amarjeet.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

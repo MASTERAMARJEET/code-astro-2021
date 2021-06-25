@@ -71,7 +71,7 @@ class BinarySystem:
     def force(self):
         """
         Function to find the gravitational force on MASS1 due to mass2. 
-        The force on MASS2 due to mass1 would be the negative of this value
+         The force on MASS2 due to mass1 would be the negative of this value
 
         Returns:
             F (float): force on mass1 due to mass2
@@ -100,25 +100,34 @@ class BinarySystem:
 
 
 #we create a binary system object, and call the methods to simulate their orbits here
-m1=5
-m2=10
-bin_sys=BinarySystem(m1,m2)
+def orbit_plot(m1,m2,time,dt=0.01):
+    """
+    Plots the orbit of a binary star system, with a constant separation.
+    
+    Args:
+        m1 (float): Stellar mass 1 (in units of solar mass)
+        m2 (float): Stellar mass 2 (in units of solar mass)
+        time (float): Time to run the simulation
+        dt (float): Time step of the simulation
 
-n=int(2e4)
-loc_mass1=np.zeros((n,2))
-loc_mass2=np.zeros((n,2))
-for i in range(n):
-    bin_sys.update_position()
-    loc_mass1[i,:]=bin_sys.pos1
-    loc_mass2[i,:]=bin_sys.pos2
+    """
+    bin_sys=BinarySystem(m1,m2)
+
+    n=int(time/dt)
+    loc_mass1=np.zeros((n,2))
+    loc_mass2=np.zeros((n,2))
+    for i in range(n):
+        bin_sys.update_position()
+        loc_mass1[i,:]=bin_sys.pos1
+        loc_mass2[i,:]=bin_sys.pos2
+
+    plt.style.use('dark_background')
+    plt.plot(loc_mass1[:,0]/au,loc_mass1[:,1]/au,linewidth=2,label='mass 1')
+    plt.plot(loc_mass2[:,0]/au,loc_mass2[:,1]/au,linewidth=2,ls='--',label='mass 2')
+    plt.legend()
+    plt.show()
+    plt.savefig('1.png')
 
 
-plt.style.use('dark_background')
-plt.plot(loc_mass1[:,0]/au,loc_mass1[:,1]/au,label='mass 1')
-plt.plot(loc_mass2[:,0]/au,loc_mass2[:,1]/au,label='mass 2')
-plt.legend()
-plt.show()
-#plt.savefig("binary_orbits.png")
 
-
-
+orbit_plot(5,10,10)
