@@ -23,14 +23,13 @@ class BinarySystem:
     """
     Simulates a Binary star system. Both the stars are considered as point masses. 
     Only the presence of gravitational force is considered. 
+    Following numpy attributes use Cartesian coordinates. 1st value is the x-coordinate, and the 2nd value is the y-coordinate. 
+    The initial positions are taken along the x-axis. Initial velocities taken perpendicular to the line joining the centers.
 
-    Input:
+    Args:
         m1 (float): stellar mass 1
         m2 (float): stellar mass 2
         dt (float): timestep of the simulation (in seconds)
-
-    Args:
-        Following numpy attributes use Cartesian coordinates. 1st value is the x-coordinate, and the 2nd value is the y-coordinate. 
         
         pos1 (numpy,float): Coordinates of mass 1
         pos2 (numpy,float): Coordinates of mass 2
@@ -39,15 +38,6 @@ class BinarySystem:
         acc1 (numpy,float): Acceleration of mass 1
         acc2 (numpy,float): Acceleration of mass 2
 
-    Methods:
-        __init__:
-            Function run to initialize the BinarySystem class. The initial positions are taken along the x-axis. Initial velocities taken perpendicular to the line joining the centers. Initialises the position, velocity, and acceleration of both masses. Also initializes the time step of the simulation
-        
-        force:
-            Finds the force on mass1 due to mass2, and returns the force
-
-        update_position:
-            Updates the attributes of the object after each time step   
     """
 
     def __init__(self,m1,m2,dt=0.01):
@@ -70,8 +60,7 @@ class BinarySystem:
 
     def force(self):
         """
-        Function to find the gravitational force on MASS1 due to mass2. 
-         The force on MASS2 due to mass1 would be the negative of this value
+        Function to find the gravitational force on MASS1 due to mass2. The force on MASS2 due to mass1 would be the negative of this value
 
         Returns:
             F (float): force on mass1 due to mass2
@@ -126,8 +115,7 @@ def orbit_plot(m1,m2,time,dt=0.01):
     plt.plot(loc_mass2[:,0]/au,loc_mass2[:,1]/au,linewidth=2,ls='--',label='mass 2')
     plt.legend()
     plt.show()
-    plt.savefig('1.png')
+    
 
 
-
-orbit_plot(5,10,10)
+#orbit_plot(5,10,100)
