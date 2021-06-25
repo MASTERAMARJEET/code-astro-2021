@@ -10,10 +10,7 @@ pip install SpectroBinary
 
 ## Documentation
 
-```bash
-
-
-```
+The documentation can be found [here](https://masteramarjeet.github.io/code-astro-2021/)
 
 ## SpectroBinary.doppler_shift()
 
