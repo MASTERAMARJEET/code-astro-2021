@@ -58,7 +58,7 @@ def spectrum_match(template,data_obs):
     return match
 
 
-def spectrum_doppler_shift(data,spec_type='absorb'):
+def spectrum_doppler_shift(data,tol,spec_type='absorb'):
     """
     This function finds the doppler shift in spectral data.
 
@@ -87,7 +87,7 @@ def spectrum_doppler_shift(data,spec_type='absorb'):
     #find the shift from the max/min match
     data_wavelength,data_intensity=data[:,0],data[:,1]
     res=data_wavelength[1]-data_wavelength[0]
-    template = spectrum_template(res)
+    template = spectrum_template(res,tol)
     
     plt.plot(template)
     plt.plot(data_intensity)
