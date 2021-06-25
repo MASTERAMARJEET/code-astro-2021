@@ -158,18 +158,15 @@
 <dt id="trajectory.BinarySystem">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">trajectory.</span></code><code class="sig-name descname"><span class="pre">BinarySystem</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trajectory.BinarySystem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simulates a Binary star system. Both the stars are considered as point masses.
-Only the presence of gravitational force is considered.</p>
-<dl class="simple">
-<dt>Input:</dt><dd><p>m1 (float): stellar mass 1
-m2 (float): stellar mass 2
-dt (float): timestep of the simulation (in seconds)</p>
-</dd>
-</dl>
+Only the presence of gravitational force is considered.
+Following numpy attributes use Cartesian coordinates. 1st value is the x-coordinate, and the 2nd value is the y-coordinate.
+The initial positions are taken along the x-axis. Initial velocities taken perpendicular to the line joining the centers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>numpy attributes use Cartesian coordinates. 1st value is the x-coordinate</strong> (<em>Following</em>) – </p></li>
-<li><p><strong>the 2nd value is the y-coordinate.</strong> (<em>and</em>) – </p></li>
+<li><p><strong>m1</strong> (<em>float</em>) – stellar mass 1</p></li>
+<li><p><strong>m2</strong> (<em>float</em>) – stellar mass 2</p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – timestep of the simulation (in seconds)</p></li>
 <li><p><strong>pos1</strong> (<em>numpy</em><em>,</em><em>float</em>) – Coordinates of mass 1</p></li>
 <li><p><strong>pos2</strong> (<em>numpy</em><em>,</em><em>float</em>) – Coordinates of mass 2</p></li>
 <li><p><strong>vel1</strong> (<em>numpy</em><em>,</em><em>float</em>) – Velocity of mass 1</p></li>
@@ -180,30 +177,9 @@ dt (float): timestep of the simulation (in seconds)</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt id="trajectory.BinarySystem.__init__">
-<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trajectory.BinarySystem.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function run to initialize the BinarySystem class. The initial positions are taken along the x-axis. Initial velocities taken perpendicular to the line joining the centers. Initialises the position, velocity, and acceleration of both masses. Also initializes the time step of the simulation</p>
-</dd></dl>
-
-<dl class="py method">
 <dt id="trajectory.BinarySystem.force">
 <code class="sig-name descname"><span class="pre">force</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trajectory.BinarySystem.force" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finds the force on mass1 due to mass2, and returns the force</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="trajectory.BinarySystem.update_position">
-<code class="sig-name descname"><span class="pre">update_position</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trajectory.BinarySystem.update_position" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the attributes of the object after each time step</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="id0">
-<code class="sig-name descname"><span class="pre">force</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
-<dt>Function to find the gravitational force on MASS1 due to mass2.</dt><dd><p>The force on MASS2 due to mass1 would be the negative of this value</p>
-</dd>
-</dl>
+<dd><p>Function to find the gravitational force on MASS1 due to mass2. The force on MASS2 due to mass1 would be the negative of this value</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>force on mass1 due to mass2</p>
@@ -215,8 +191,8 @@ dt (float): timestep of the simulation (in seconds)</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="id2">
-<code class="sig-name descname"><span class="pre">update_position</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dt id="trajectory.BinarySystem.update_position">
+<code class="sig-name descname"><span class="pre">update_position</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trajectory.BinarySystem.update_position" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function updates the positions of mass1 and mass2 at each time step dt.
 It calls the force() function to update the acceleration, and hence velocity as well.</p>
 <dl class="field-list simple">
