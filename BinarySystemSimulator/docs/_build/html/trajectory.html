@@ -200,8 +200,10 @@ dt (float): timestep of the simulation (in seconds)</p>
 <dl class="py method">
 <dt id="id0">
 <code class="sig-name descname"><span class="pre">force</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function to find the gravitational force on MASS1 due to mass2.
-The force on MASS2 due to mass1 would be the negative of this value</p>
+<dd><dl class="simple">
+<dt>Function to find the gravitational force on MASS1 due to mass2.</dt><dd><p>The force on MASS2 due to mass1 would be the negative of this value</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>force on mass1 due to mass2</p>
@@ -224,6 +226,22 @@ It calls the force() function to update the acceleration, and hence velocity as 
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt id="trajectory.orbit_plot">
+<code class="sig-prename descclassname"><span class="pre">trajectory.</span></code><code class="sig-name descname"><span class="pre">orbit_plot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trajectory.orbit_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the orbit of a binary star system, with a constant separation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m1</strong> (<em>float</em>) – Stellar mass 1 (in units of solar mass)</p></li>
+<li><p><strong>m2</strong> (<em>float</em>) – Stellar mass 2 (in units of solar mass)</p></li>
+<li><p><strong>time</strong> (<em>float</em>) – Time to run the simulation</p></li>
+<li><p><strong>dt</strong> (<em>float</em>) – Time step of the simulation</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

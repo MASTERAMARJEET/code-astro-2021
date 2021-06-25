@@ -126,8 +126,7 @@ def orbit_plot(m1,m2,time,dt=0.01):
     plt.plot(loc_mass2[:,0]/au,loc_mass2[:,1]/au,linewidth=2,ls='--',label='mass 2')
     plt.legend()
     plt.show()
-    plt.savefig('1.png')
+    
 
 
-
-orbit_plot(5,10,10)
+#orbit_plot(5,10,100)
