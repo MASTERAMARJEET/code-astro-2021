@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def spectrum_template(res,tol=10.0):
+def spectrum_template(res,tol=5.0):
     """
     Creates a template to be matched with the spectroscopic data.
     Wavelength of the template window is 4000 to 7000 nm
@@ -93,18 +93,19 @@ def spectrum_doppler_shift(data,spec_type='absorb'):
     plt.plot(data_intensity)
     plt.savefig("1.png")
     
-    match = spectrum_match(template,data_intensity)
     max_match=0
 
     if (spec_type=='emit'):
+        match = spectrum_match(template,data_intensity)
         max_match=np.where(match==max(match))
     else:
+        match = spectrum_match(-template,data_intensity)
         max_match=np.where(match==min(match))
 
     #pick the correct index
     wavelength_obs = data_wavelength[0] + max_match[0]*res 
     high_template=7000 #corresponds to highest wavelength of the template
-    dopp_shift = high_template - wavelength_obs 
+    dopp_shift = wavelength_obs - high_template
 
     return dopp_shift
 
@@ -125,21 +126,23 @@ def test_spectrum_doppler_shift():
 
     spectral_line=np.array([line_H_alpha,line_H_beta,line_G_band,line_H_delta,line_H_gamma,line_He_ion,line_He_neutral,line_Na])
     spectral_line=np.sort(spectral_line)
-    spectral_line+=500
+    true_doppler_shift=500
+    spectral_line+=true_doppler_shift
 
-    res,tol=0.1,10.0
+
+    res,tol=0.01,10.0
     wavelength=np.arange(2000,7000,res) 
     intensity=0.03*np.random.normal(0,10,len(wavelength))
     count=0
     n_tol=int(0.5*tol/res)
     for i in range(len(wavelength)):
             if(abs(wavelength[i]-spectral_line[count])<=res):
-                intensity[i-n_tol:i+n_tol]+=1
+                intensity[i-n_tol:i+n_tol]+=2
                 count+=1
                 if(count==8):
                     break
 
-    intensity+=5
+    intensity+=10
 
     data=np.zeros((len(wavelength),2))
     data[:,0],data[:,1]=wavelength,intensity

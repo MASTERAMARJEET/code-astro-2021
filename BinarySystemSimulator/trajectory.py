@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import astropy.units as units
 
 """
 Updates to be made:
@@ -15,8 +14,8 @@ m_solar=1.0
 au=10.0
 
 #G=6.67e-11
-#m_solar=units.solMass
-#au=units.AU
+#m_solar=2e30
+#au=1.5e11
 
 class BinarySystem:
     """
@@ -57,14 +56,18 @@ class BinarySystem:
         Function run to initialize the BinarySystem class. The initial positions are taken along the x-axis.
         Initial velocities taken perpendicular to the line joining the centers.
         """
-        self.m1=m1
-        self.m2=m2
+        self.m1=m1*m_solar
+        self.m2=m2*m_solar
         self.dt=dt
 
-        self.pos1=np.array([-1*au,0])
-        self.pos2=np.array([1*au,0])
-        self.vel1=np.array([0,0.3])
-        self.vel2=np.array([0,-0.3])
+        L=1*au
+        self.pos1=np.array([-(m2/(m1+m2))*L,0])
+        self.pos2=np.array([(m1/(m1+m2))*L,0])
+        
+        self.vel1=np.array([0, self.m2*np.sqrt(G/((self.m1+self.m2)*L))])
+        self.vel2=np.array([0,-self.m1*np.sqrt(G/((self.m1+self.m2)*L))])
+        #self.vel1=np.array([0, 0.3])
+        #self.vel2=np.array([0,-0.3])
         
         F=self.force()
         self.acc1=F/self.m1
@@ -102,8 +105,8 @@ class BinarySystem:
 
 
 #we create a binary system object, and call the methods to simulate their orbits here
-m1=5*m_solar
-m2=5*m_solar
+m1=5
+m2=10
 bin_sys=BinarySystem(m1,m2)
 
 n=int(2e4)
@@ -114,9 +117,13 @@ for i in range(n):
     loc_mass1[i,:]=bin_sys.pos1
     loc_mass2[i,:]=bin_sys.pos2
 
-plt.plot(loc_mass1[:,0],loc_mass1[:,1],label='mass 1')
-plt.plot(loc_mass2[:,0],loc_mass2[:,1],label='mass 2')
+
+plt.style.use('dark_background')
+plt.plot(loc_mass1[:,0]/au,loc_mass1[:,1]/au,label='mass 1')
+plt.plot(loc_mass2[:,0]/au,loc_mass2[:,1]/au,label='mass 2')
 plt.legend()
-plt.savefig("binary_orbits.png")
+plt.show()
+#plt.savefig("binary_orbits.png")
+
 
 
