@@ -6,6 +6,8 @@ Updates to be made:
     Trial runs with actual values of constants, and better plot visualization
     Generalize initialization conditions, with correct expressions
     Need to incorporate the orbital time period of the binary system
+
+    NEED TO FIGURE OUT THE SCALING!!!
 """
 
 #need to be replaced with actual values and scaled accordinglt for the right plots!!!
@@ -21,16 +23,14 @@ class BinarySystem:
     """
     Simulates a Binary star system. Both the stars are considered as point masses. 
     Only the presence of gravitational force is considered. 
-    NEED TO FIGURE OUT THE SCALING!!!
 
-    Args:
+    Input:
         m1 (float): stellar mass 1
         m2 (float): stellar mass 2
         dt (float): timestep of the simulation (in seconds)
 
-    Attributes:
-        Following numpy attributes use Cartesian coordinates. 
-        1st value is the x-coordinate, and the 2nd value is the y-coordinate. 
+    Args:
+        Following numpy attributes use Cartesian coordinates. 1st value is the x-coordinate, and the 2nd value is the y-coordinate. 
         
         pos1 (numpy,float): Coordinates of mass 1
         pos2 (numpy,float): Coordinates of mass 2
@@ -41,8 +41,7 @@ class BinarySystem:
 
     Methods:
         __init__:
-            Initialises the position, velocity, and acceleration of both masses.
-            Also initializes the time step of the simulation
+            Function run to initialize the BinarySystem class. The initial positions are taken along the x-axis. Initial velocities taken perpendicular to the line joining the centers. Initialises the position, velocity, and acceleration of both masses. Also initializes the time step of the simulation
         
         force:
             Finds the force on mass1 due to mass2, and returns the force
@@ -52,10 +51,6 @@ class BinarySystem:
     """
 
     def __init__(self,m1,m2,dt=0.01):
-        """
-        Function run to initialize the BinarySystem class. The initial positions are taken along the x-axis.
-        Initial velocities taken perpendicular to the line joining the centers.
-        """
         self.m1=m1*m_solar
         self.m2=m2*m_solar
         self.dt=dt
