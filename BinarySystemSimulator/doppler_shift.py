@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def spectrum_template(res,tol):
+def spectrum_template(res,tol=10.0):
     """
     Creates a template to be matched with the spectroscopic data.
     Wavelength of the template window is 4000 to 7000 nm
@@ -35,17 +35,27 @@ def spectrum_template(res,tol):
     
     return(intensity_template)
 
-def spectrum_match(template,data):
+def spectrum_match(template,data_obs):
     """
     Moves the template as a window across the observed spectral data, and finds the inner product at each window.
 
     Args:
         template (numpy,float): Template function with impulses at characteristic wavelengths
-        data (numpy,float): Observed intensity data
+        data_obs (numpy,float): Observed intensity data
 
     Returns:
         match (numpy,float): Inner product for each window
     """
+    n_temp,n_obs=len(template),len(data_obs)
+    data=np.zeros(n_obs+2*n_temp)
+    data[n_temp:-(n_temp+1)] = data_obs
+    
+    match=np.zeros(n_obs+n_temp)
+
+    for i in range(n_obs+n_temp):
+        match[i]=numpy.inner(template,data[i:i+n_temp])    
+
+    return match
 
 
 def spectrum_doppler_shift(data,spec_type='absorb'):
@@ -53,7 +63,10 @@ def spectrum_doppler_shift(data,spec_type='absorb'):
     This function finds the doppler shift in spectral data.
 
     Args:
-        data (numpy,float): Observed spectral intensity data
+        data (2D numpy,float): 
+            Observed spectral intensity data (no of rows = no of data points, no of cols = 2) 
+            First column contains the wavelength, 2nd column contains corresponding intensity
+
         spec_type (string):
             Input can either be 'emit' or 'absorb'
             'emit': corresponds to emission spectrum (look for the highest inner product)
@@ -67,12 +80,30 @@ def spectrum_doppler_shift(data,spec_type='absorb'):
         spectrum_match(template,data): Function to find the inner product of template with observed data
     """
 
+    #find the res of the input data
+    #take tolerance for the template
+    #create template
+    #call match function
+    #find the shift from the max/min match
+    data_wavelength,data_intensity=data[:,0],data[:,1]
+    res=data_wavelength[1]-data_wavelength[0]
+    template = spectrum_template(res)
+    match = spectrum_match(template,data_intensity)
+    max_match=0
+    if (spec_type=='emit'):
+        max_match=np.where(match==np.amax(match))
+    else:
+        max_match=np.where(match==np.amin(match))
 
-res,tol=0.1,10
-wavelength=np.arange(4000,7000,res)
-intensity=spectral_template(res,tol)
-plt.plot(wavelength, intensity)
-plt.savefig("spectrum template.png")
+    match_wavelength = max_match*res + data_wavelength[0]
+    dopp_shift = match_wavelength - 4000 #4000A corresponds to the lowest in template
 
+    return dopp_shift
+
+
+
+"""
+To test create synthetic data points!!
+"""
             
     
